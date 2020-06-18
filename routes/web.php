@@ -17,4 +17,4 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/posts/{post}', 'PostsController@show');
+Route::get('/posts/{id}', 'PostsController@show');
