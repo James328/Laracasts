@@ -12,9 +12,23 @@
 */
 
 Route::get('/', function () {
-    $name = request('name');
-
     return view('test', [
-        'name' => $name,
+        'name' => request('name')
+    ]);
+});
+
+
+Route::get('/posts/{post}', function($post) {
+    $posts = [
+        'my-first-post' => 'Hello, this is my first post!',
+        'my-second-post' => 'Here is the second post.'
+    ];
+
+    if (! array_key_exists($post, $posts) ) {
+        abort(404, 'Sorry, that post was not found.');
+    }
+
+    return view('post', [
+        'post' => $posts[$post]
     ]);
 });
