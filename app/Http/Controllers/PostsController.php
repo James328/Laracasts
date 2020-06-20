@@ -43,19 +43,23 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $posts = [
-            'my-first-post' => 'Hello, this is my first post!',
-            'my-second-post' => 'Here is the second post.'
-        ];
+        $post = \DB::table('posts')->where('slug', $slug)->first();
+
+        // dd($post);
+
+        // $posts = [
+        //     'my-first-post' => 'Hello, this is my first post!',
+        //     'my-second-post' => 'Here is the second post.'
+        // ];
     
-        if (! array_key_exists($id, $posts) ) {
-            abort(404, 'Sorry, that post was not found.');
-        }
+        // if (! array_key_exists($post, $posts) ) {
+        //     abort(404, 'Sorry, that post was not found.');
+        // }
     
         return view('post', [
-            'post' => $posts[$id]
+            'post' => $post
         ]);
     }
 
