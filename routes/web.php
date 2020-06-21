@@ -12,9 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('test', [
-        'name' => request('name')
-    ]);
+    return view('welcome');
 });
 
-Route::get('/posts/{id}', 'PostsController@show');
+Route::get('/posts/{post}', 'PostsController@show');
